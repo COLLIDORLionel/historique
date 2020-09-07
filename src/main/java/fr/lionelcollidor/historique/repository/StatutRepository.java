@@ -1,6 +1,6 @@
 package fr.lionelcollidor.historique.repository;
 
-import fr.lionelcollidor.historique.models.Statut;
+import fr.lionelcollidor.historique.model.Statut;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
@@ -17,5 +17,5 @@ public interface StatutRepository extends JpaRepository<Statut, Long> {
     <S extends Statut> S save(S s);
 
     @Override
-    void delete(Statut statut);
+    void deleteById(Long aLong);
 }
