@@ -21,7 +21,7 @@ public class StatutController {
 
     @PostMapping("/statuts")
     public Statut createStatut(@RequestBody Statut newStatut){
-        return this.service.createStatut(newStatut);
+        return this.service.createOrUpdateStatut(newStatut);
     }
 
     @GetMapping("/statuts/{id}")
@@ -30,6 +30,16 @@ public class StatutController {
                 .orElseThrow( ()-> new NotFoundException(
                         "Le statut numéro : " + id + " est introuvable."
                 ) );
+    }
+
+    @PutMapping("/statuts/{id}")
+    public Statut updateStatut(@RequestBody Statut updateStatut, @PathVariable Long id){
+        return this.service.getStatutById(id)
+                .map(statut -> {
+                    statut.setNom(updateStatut.getNom());
+                    return this.service.createOrUpdateStatut(statut);
+                })
+                .orElseThrow( ()-> new NotFoundException("Le statut n'existe pas."));
     }
 
 }

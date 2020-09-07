@@ -32,7 +32,7 @@ public class StatutService implements IStatutService {
         return statut;
     }
 
-    public Statut createStatut(Statut s){
+    public Statut createOrUpdateStatut(Statut s){
         return this.repository.save(s);
     }
 

@@ -11,7 +11,7 @@ public interface IStatutService {
 
     Optional<Statut> getStatutById(Long id) throws NotFoundException;
 
-    Statut createStatut(Statut s);
+    Statut createOrUpdateStatut(Statut s);
 
     void deleteStatutById(Long id);
 }
