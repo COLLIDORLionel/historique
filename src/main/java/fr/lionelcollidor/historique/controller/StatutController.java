@@ -42,4 +42,9 @@ public class StatutController {
                 .orElseThrow( ()-> new NotFoundException("Le statut n'existe pas."));
     }
 
+    @DeleteMapping("/statuts/{id}")
+    public void deleteStatut(@PathVariable Long id){
+        this.service.deleteStatutById(id);
+    }
+
 }
