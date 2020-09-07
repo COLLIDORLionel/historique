@@ -1,12 +1,12 @@
 package fr.lionelcollidor.historique.repository;
 
 import fr.lionelcollidor.historique.model.Statut;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
 import java.util.Optional;
 
-public interface StatutRepository extends JpaRepository<Statut, Long> {
+public interface StatutRepository extends CrudRepository<Statut, Long> {
     @Override
     List<Statut> findAll();
 
