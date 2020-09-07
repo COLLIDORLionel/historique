@@ -1,4 +1,4 @@
-package fr.lionelcollidor.historique.models;
+package fr.lionelcollidor.historique.model;
 
 import javax.persistence.*;
 import java.time.LocalDate;

@@ -1,6 +1,6 @@
-package fr.lionelcollidor.historique.controllers;
+package fr.lionelcollidor.historique.controller;
 
-import fr.lionelcollidor.historique.models.Statut;
+import fr.lionelcollidor.historique.model.Statut;
 import fr.lionelcollidor.historique.repository.StatutRepository;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
