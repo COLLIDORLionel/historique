@@ -1,6 +1,6 @@
 package fr.lionelcollidor.historique.exception;
 
-public class NotFoundException extends Exception{
+public class NotFoundException extends RuntimeException{
     public NotFoundException() {
         super();
     }
