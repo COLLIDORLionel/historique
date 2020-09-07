@@ -15,4 +15,12 @@ public class GlobalHandlerControllerException {
         return notFoundException.getMessage();
     }
 
+    @ResponseBody
+    @ExceptionHandler(Exception.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public String handleGenericException(Exception ex){
+        return "Une erreur technique s'est produite. " +
+                "Veuillez réessayer dans quelques instants";
+    }
+
 }
