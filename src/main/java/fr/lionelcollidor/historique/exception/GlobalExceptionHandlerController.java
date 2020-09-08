@@ -18,12 +18,10 @@ public class GlobalExceptionHandlerController {
     }
 
     @ResponseBody
-    @ExceptionHandler(Exception.class)
+    @ExceptionHandler(InternalErrorException.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    public ResponseEntity<ApiErrorResponse> handleGenericException(Exception ex){
-        ApiErrorResponse response = new ApiErrorResponse("500", ex.getMessage());
-        /*return "Une erreur technique s'est produite. " +
-                "Veuillez réessayer dans quelques instants";*/
+    public ResponseEntity<ApiErrorResponse> handleGenericException(InternalErrorException ieException){
+        ApiErrorResponse response = new ApiErrorResponse("500", ieException.getMessage());
         return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
