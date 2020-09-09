@@ -23,18 +23,24 @@ public class StatutService implements IStatutService {
         return this.statutRepository.findAll();
     }
 
-    public Optional<Statut> getStatutById(Long id) throws NotFoundException, InternalErrorException {
+    public Optional<Statut> getOptionalStatutById(Long id) throws NotFoundException {
 
         Optional<Statut> statut = this.statutRepository.findById(id);
 
-        if (statut.equals(null))
+        if (!statut.isPresent())
             throw new NotFoundException("Le statut qui a pour identifiant : " + id + " n'est pas trouvable");
 
-        if (!statut.equals(Statut.class))
-            throw new InternalErrorException("Une erreur technique s'est produite. Merci de contacter le support." +
-                    "Veuillez réessayer dans quelques instants, si c'est fait contactez le support.");
-
         return statut;
+    }
+
+    public Statut getStatutById(Long id) throws NotFoundException {
+
+        Optional<Statut> oStatut = this.statutRepository.findById(id);
+
+        if (!oStatut.isPresent())
+            throw new NotFoundException("Le statut qui a pour identifiant : " + id + " n'est pas trouvable");
+
+        return new Statut(oStatut.get().getId(), oStatut.get().getNom());
     }
 
     public Statut createOrUpdateStatut(Statut s){

@@ -10,7 +10,9 @@ import java.util.Optional;
 public interface IStatutService {
     List<Statut> getAllStatut();
 
-    Optional<Statut> getStatutById(Long id) throws NotFoundException, InternalErrorException;
+    Optional<Statut> getOptionalStatutById(Long id) throws NotFoundException;
+
+    Statut getStatutById(Long id) throws NotFoundException;
 
     Statut createOrUpdateStatut(Statut s);
 

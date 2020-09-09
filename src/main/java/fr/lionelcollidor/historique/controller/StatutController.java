@@ -1,5 +1,6 @@
 package fr.lionelcollidor.historique.controller;
 
+import fr.lionelcollidor.historique.exception.InternalErrorException;
 import fr.lionelcollidor.historique.exception.NotFoundException;
 import fr.lionelcollidor.historique.model.Statut;
 import fr.lionelcollidor.historique.model.assembleur.StatutModelAssembleur;
@@ -41,19 +42,15 @@ public class StatutController {
     }
 
     @GetMapping("/statuts/{id}")
-    public EntityModel<Statut> getStatutById(@PathVariable Long id){
-        Statut s = this.service.getStatutById(id)
-                .orElseThrow( ()-> new NotFoundException(
-                        "Le statut numéro : " + id + " est introuvable."
-                ) );
+    public EntityModel<Statut> getStatutById(@PathVariable Long id) throws NotFoundException {
+        Statut s = this.service.getStatutById(id);
 
         return assembleur.toModel(s);
-
     }
 
     @PutMapping("/statuts/{id}")
-    public EntityModel<Statut> updateStatut(@RequestBody Statut updateStatut, @PathVariable Long id){
-        Statut sUpdate = this.service.getStatutById(id)
+    public EntityModel<Statut> updateStatut(@RequestBody Statut updateStatut, @PathVariable Long id) throws NotFoundException {
+        Statut sUpdate = this.service.getOptionalStatutById(id)
                 .map(statut -> {
                     statut.setNom(updateStatut.getNom());
                     return this.service.createOrUpdateStatut(statut);
