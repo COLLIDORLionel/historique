@@ -1,6 +1,5 @@
 package fr.lionelcollidor.historique.service;
 
-import fr.lionelcollidor.historique.exception.InternalErrorException;
 import fr.lionelcollidor.historique.exception.NotFoundException;
 import fr.lionelcollidor.historique.model.Statut;
 

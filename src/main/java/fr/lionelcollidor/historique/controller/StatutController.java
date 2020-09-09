@@ -1,6 +1,5 @@
 package fr.lionelcollidor.historique.controller;
 
-import fr.lionelcollidor.historique.exception.InternalErrorException;
 import fr.lionelcollidor.historique.exception.NotFoundException;
 import fr.lionelcollidor.historique.model.Statut;
 import fr.lionelcollidor.historique.model.assembleur.StatutModelAssembleur;
