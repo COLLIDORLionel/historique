@@ -1,14 +1,15 @@
 package fr.lionelcollidor.historique.service.impl;
 
-import fr.lionelcollidor.historique.exception.InternalErrorException;
 import fr.lionelcollidor.historique.exception.NotFoundException;
 import fr.lionelcollidor.historique.model.Tache;
 import fr.lionelcollidor.historique.repository.TacheRepository;
 import fr.lionelcollidor.historique.service.ITacheService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class TacheService implements ITacheService {
 
     private final TacheRepository tacheRepository;
@@ -23,17 +24,26 @@ public class TacheService implements ITacheService {
     }
 
     @Override
-    public Optional<Tache> getTacheById(String numero) throws NotFoundException, InternalErrorException {
+    public Optional<Tache> getOptionalTacheById(String numero) throws NotFoundException {
         Optional<Tache> tache = this.tacheRepository.findById(numero);
 
-        if (tache.equals(null))
+        if (tache.isPresent())
             throw new NotFoundException("La tache qui a pour numéro: " + numero + " n'est pas trouvable.");
 
-        if (!tache.equals(Tache.class))
-            throw new InternalErrorException("Une erreur technique s'est produite. Merci de contacter le support." +
-                    "Veuillez réessayer dans quelques instants, si c'est fait contactez le support.");
-
         return tache;
+    }
+
+    @Override
+    public Tache getTacheById(String numero) throws NotFoundException {
+        Optional<Tache> oTache = this.tacheRepository.findById(numero);
+
+        if (!oTache.isPresent())
+            throw new NotFoundException("La tache qui a pour numéro: " + numero + " n'est pas trouvable.");
+
+        return new Tache(oTache.get().getNumero(),
+                oTache.get().getCom_1N(),
+                oTache.get().getDate_1N(),
+                oTache.get().getStatuts());
     }
 
     @Override
