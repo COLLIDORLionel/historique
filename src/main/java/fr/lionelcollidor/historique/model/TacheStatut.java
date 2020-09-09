@@ -22,11 +22,11 @@ public class TacheStatut {
     @Column(name = "id")
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "tache_numero", foreignKey = @ForeignKey(name = "TACHE_FK"))
     private Tache tache;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "statut_id", foreignKey = @ForeignKey(name = "STATUT_FK"))
     private Statut statut;
 

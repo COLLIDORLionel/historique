@@ -16,9 +16,9 @@ public interface TacheStatutRepository extends CrudRepository<TacheStatut, Long>
     Optional<TacheStatut> findById(Long aLong);
 
     @Query("SELECT ts " +
-            "FROM tache_statuts ts " +
-            "WHERE ts.tache_numero like %:numero% " +
-            "AND ts.statut_id = %:statut_id%")
+            "FROM TacheStatut ts " +
+            "WHERE ts.tache like %:numero% " +
+            "AND ts.statut = :statut_id ")
     Optional<TacheStatut> findByTacheAndStatut(@Param("numero") String numero_tache, @Param("statut_id") Long id_statut);
 
     @Override
