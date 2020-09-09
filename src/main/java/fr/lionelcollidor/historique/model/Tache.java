@@ -2,8 +2,8 @@ package fr.lionelcollidor.historique.model;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Map;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "tache")
@@ -18,15 +18,14 @@ public class Tache {
     @Column(name = "date_1N")
     private LocalDate date_1N;
 
-    @ManyToMany
-    private Map<LocalDate, Statut> statuts;
-
+    @OneToMany(mappedBy = "id")
+    private Set<TacheStatut> statuts;
 
     public Tache() {
         super();
     }
 
-    public Tache(String numero, String com_1N, LocalDate date_1N, Map<LocalDate, Statut> statuts) {
+    public Tache(String numero, String com_1N, LocalDate date_1N, Set<TacheStatut> statuts) {
         this();
         this.numero = numero;
         this.com_1N = com_1N;
@@ -58,11 +57,11 @@ public class Tache {
         this.date_1N = date_1N;
     }
 
-    public Map<LocalDate, Statut> getStatuts() {
+    public Set<TacheStatut> getStatuts() {
         return statuts;
     }
 
-    public void setStatuts(Map<LocalDate, Statut> statuts) {
+    public void setStatuts(Set<TacheStatut> statuts) {
         this.statuts = statuts;
     }
 
