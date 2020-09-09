@@ -18,7 +18,7 @@ public class Tache {
     @Column(name = "date_1N")
     private LocalDate date_1N;
 
-    @OneToMany(mappedBy = "id")
+    @OneToMany(mappedBy = "id", fetch = FetchType.EAGER)
     private Set<TacheStatut> statuts;
 
     public Tache() {
